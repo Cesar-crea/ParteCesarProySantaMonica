@@ -1,0 +1,55 @@
+﻿@model ProyectoSantaMonica_Cesar.Models.Paciente
+
+<div class="container mt-5">
+    <div class="card p-4">
+
+        <h2>Editar Paciente</h2>
+
+        <form asp-action="Edit" method="post" id="formEdit">
+
+            <input asp-for="Id_Paciente" type="hidden" />
+
+            <div class="mb-3">
+                <label asp-for="Nombres"></label>
+                <input asp-for="Nombres" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Apellidos"></label>
+                <input asp-for="Apellidos" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Dni"></label>
+                <input asp-for="Dni" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Fecha_Nacimiento"></label>
+                <input asp-for="Fecha_Nacimiento" type="date" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono"></label>
+                <input asp-for="Telefono" class="form-control" />
+            </div>
+
+            <button class="btn btn-success mt-3">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $("#formEdit").submit(function () {
+        Swal.fire({
+            icon: "success",
+            title: "Paciente actualizado",
+            timer: 1200,
+            showConfirmButton: false
+        });
+    });
+</script>

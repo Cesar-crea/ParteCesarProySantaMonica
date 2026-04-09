@@ -1,0 +1,53 @@
+﻿@model ProyectoSantaMonica_Cesar.Models.Paciente
+
+<div class="container mt-5">
+    <div class="card p-4">
+
+        <h2>Registrar Paciente</h2>
+
+        <form asp-action="Create" method="post" id="formCreate">
+
+            <div class="mb-3">
+                <label asp-for="Nombres"></label>
+                <input asp-for="Nombres" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Apellidos"></label>
+                <input asp-for="Apellidos" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Dni"></label>
+                <input asp-for="Dni" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Fecha_Nacimiento"></label>
+                <input asp-for="Fecha_Nacimiento" type="date" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono"></label>
+                <input asp-for="Telefono" class="form-control" />
+            </div>
+
+            <button class="btn btn-primary mt-3">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $("#formCreate").submit(function () {
+        Swal.fire({
+            icon: "success",
+            title: "Paciente registrado",
+            timer: 1200,
+            showConfirmButton: false
+        });
+    });
+</script>

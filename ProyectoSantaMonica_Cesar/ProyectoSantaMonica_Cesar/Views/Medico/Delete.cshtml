@@ -1,0 +1,129 @@
+﻿@model ProyectoSantaMonica_Cesar.Models.Medico
+
+@{
+    ViewData["Title"] = "Eliminar Médico";
+}
+
+<!-- Bootstrap + Icons + SweetAlert -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    body {
+        background-color: #f4f7fb;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+        border-radius: 16px;
+        max-width: 700px;
+        margin: 60px auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        background-color: #e63946;
+        color: white;
+        padding: 20px;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .value {
+        color: #333;
+    }
+
+    .btn-danger {
+        background-color: #e63946;
+        border: none;
+    }
+
+    .btn-secondary {
+        margin-left: 10px;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h4><i class="bi bi-exclamation-triangle me-2"></i>Eliminar Médico</h4>
+    </div>
+
+    <div class="card-body">
+
+        <p class="text-danger fw-bold">
+            ¿Estás seguro de eliminar este médico?
+        </p>
+
+        <hr />
+
+        <div class="row mb-2">
+            <div class="col-4 label">Nombres:</div>
+            <div class="col-8 value">@Model.Nombres</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4 label">Apellidos:</div>
+            <div class="col-8 value">@Model.Apellidos</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4 label">DNI:</div>
+            <div class="col-8 value">@Model.Dni</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4 label">Colegiatura:</div>
+            <div class="col-8 value">@Model.Nro_Colegiatura</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4 label">Teléfono:</div>
+            <div class="col-8 value">@Model.Telefono</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-4 label">Especialidad:</div>
+            <div class="col-8 value">@Model.Especialidad</div>
+        </div>
+
+        <form asp-action="Delete" id="formDelete">
+            <input type="hidden" asp-for="Id_Medico" />
+
+            <button type="button" class="btn btn-danger" onclick="confirmarDelete()">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+        </form>
+    </div>
+</div>
+
+<script>
+    function confirmarDelete() {
+        Swal.fire({
+            title: '¿Eliminar médico?',
+            text: 'Esta acción no se puede deshacer',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e63946',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("formDelete").submit();
+            }
+        });
+    }
+</script>

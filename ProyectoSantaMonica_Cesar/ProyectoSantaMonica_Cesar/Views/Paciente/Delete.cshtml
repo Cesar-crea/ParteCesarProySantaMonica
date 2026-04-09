@@ -1,0 +1,51 @@
+﻿@model ProyectoSantaMonica_Cesar.Models.Paciente
+
+<div class="container mt-5">
+    <div class="card p-4">
+
+        <h2 class="text-danger">Eliminar Paciente</h2>
+
+        <div class="alert alert-warning">
+            ¿Seguro que deseas eliminar este paciente?
+        </div>
+
+        <ul>
+            <li><b>Nombres:</b> @Model.Nombres</li>
+            <li><b>Apellidos:</b> @Model.Apellidos</li>
+            <li><b>DNI:</b> @Model.Dni</li>
+            <li><b>Fecha Nacimiento:</b> @Model.Fecha_Nacimiento</li>
+            <li><b>Teléfono:</b> @Model.Telefono</li>
+        </ul>
+
+        <form asp-action="Delete" method="post" id="formDelete">
+            <input type="hidden" asp-for="Id_Paciente" />
+
+            <button class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $("#formDelete").submit(function (e) {
+        e.preventDefault();
+        let form = this;
+
+        Swal.fire({
+            title: "¿Confirmar eliminación?",
+            text: "Esta acción no se puede deshacer",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>

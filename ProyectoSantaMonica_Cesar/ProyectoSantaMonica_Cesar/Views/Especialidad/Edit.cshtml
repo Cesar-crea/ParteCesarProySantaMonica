@@ -1,0 +1,34 @@
+﻿@model ProyectoSantaMonica_Cesar.Models.Especialidad
+
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2 class="text-warning">✏ Editar Especialidad</h2>
+
+        <form asp-action="Edit" method="post" id="formEdit">
+
+            <input asp-for="Id_Especialidad" type="hidden" />
+
+            <div class="mb-3">
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <button class="btn btn-success mt-3">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.getElementById("formEdit").addEventListener("submit", function () {
+        Swal.fire({
+            icon: "success",
+            title: "Especialidad actualizada",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>
